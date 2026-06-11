@@ -1,0 +1,1540 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lug Works A+ Mock</title>
+  <style>
+    :root {
+      --paper: #f7f7f2;
+      --paper-2: #fbfaf5;
+      --surface: #ffffff;
+      --ink: #0b0f0e;
+      --muted: #626d68;
+      --line: #d9e1dd;
+      --line-dark: rgba(255,255,255,.18);
+      --teal: #0f766e;
+      --deep: #073c39;
+      --deep-2: #092f2d;
+      --mist: #e7f1ef;
+      --gold: #9b7b3d;
+      --shadow: 0 28px 80px rgba(7, 42, 38, .13);
+      --soft-shadow: 0 16px 50px rgba(7, 42, 38, .08);
+      --radius: 8px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(15,118,110,.035) 1px, transparent 1px) 0 0 / 72px 72px,
+        linear-gradient(180deg, #fffdf7 0%, var(--paper) 38%, #f8f8f4 100%);
+      color: var(--ink);
+      font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Sans", system-ui, sans-serif;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(11,15,14,.055) .7px, transparent .7px);
+      background-size: 4px 4px;
+      opacity: .28;
+      mix-blend-mode: multiply;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    p { margin: 0; }
+
+    .shell {
+      width: min(var(--max), calc(100vw - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(7,60,57,.24);
+      border-radius: 50%;
+      color: var(--deep);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+      background: rgba(255,255,255,.55);
+    }
+
+    .brand small {
+      font-family: "Noto Sans JP", "Yu Gothic", system-ui, sans-serif;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #26322f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .nav-cta {
+      min-height: 42px;
+      padding: 0 17px;
+      border-radius: 4px;
+      background: var(--deep);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 10px 24px rgba(7,60,57,.2);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+      min-height: 690px;
+      padding: 56px 0 96px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      padding-top: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 680px;
+      font-family: Georgia, "Times New Roman", "Noto Serif JP", serif;
+      font-size: clamp(92px, 12vw, 166px);
+      line-height: .84;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    .tagline {
+      margin-top: 34px;
+      max-width: 590px;
+      font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Sans", system-ui, sans-serif;
+      font-size: clamp(25px, 2.8vw, 36px);
+      line-height: 1.42;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin-top: 24px;
+      max-width: 520px;
+      color: #4f5c57;
+      font-size: 15px;
+      line-height: 2;
+      font-weight: 500;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 54px;
+      min-width: 178px;
+      padding: 0 22px;
+      border: 1px solid var(--deep);
+      border-radius: 5px;
+      background: var(--deep);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 14px 30px rgba(7,60,57,.18);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,.58);
+      color: var(--deep);
+      box-shadow: none;
+    }
+
+    .arrow {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .mini-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 46px;
+      max-width: 560px;
+      color: #26322f;
+    }
+
+    .mini-proof div {
+      display: grid;
+      gap: 6px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .mini-proof b {
+      font-size: 21px;
+      color: var(--deep);
+    }
+
+    .mini-proof span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .studio-board {
+      position: relative;
+      min-height: 590px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-art {
+      position: relative;
+      margin: 0;
+      border-radius: 7px;
+      isolation: isolate;
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      z-index: -1;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(15,118,110,.15), rgba(155,123,61,.10));
+      filter: blur(12px);
+      opacity: .72;
+    }
+
+    .hero-art img {
+      display: block;
+      width: min(720px, 100%);
+      height: auto;
+      border: 1px solid rgba(7,60,57,.14);
+      border-radius: 7px;
+      box-shadow: var(--shadow);
+    }
+
+    .art-caption {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      align-items: center;
+      width: min(360px, calc(100% - 48px));
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.42);
+      border-radius: 6px;
+      background: rgba(7, 23, 21, .78);
+      color: #e9fbf7;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(7,23,21,.22);
+    }
+
+    .art-caption b {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #dff4ef;
+      color: var(--deep);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+    }
+
+    .art-caption span {
+      display: block;
+      font-size: 12px;
+      line-height: 1.65;
+      color: #cde8e3;
+    }
+
+    .art-float {
+      position: absolute;
+      right: -10px;
+      top: 32px;
+      width: 184px;
+      padding: 16px 18px;
+      border: 1px solid rgba(7,60,57,.15);
+      border-radius: 6px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 18px 44px rgba(7,42,38,.16);
+      color: var(--ink);
+    }
+
+    .art-float strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--teal);
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .art-float span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .desk-sheet,
+    .report-card,
+    .code-card,
+    .flow-card,
+    .memo-card,
+    .diagnosis-card {
+      position: absolute;
+      border: 1px solid rgba(7,60,57,.15);
+      background: rgba(255,255,255,.94);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .desk-sheet {
+      inset: 44px 62px auto auto;
+      width: 470px;
+      height: 410px;
+      border-radius: 5px;
+      transform: rotate(2deg);
+      background:
+        linear-gradient(90deg, rgba(15,118,110,.07) 1px, transparent 1px) 0 0 / 42px 42px,
+        linear-gradient(180deg, #fff, #fbfaf5);
+    }
+
+    .desk-sheet::before {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 1px solid #dfe6e3;
+    }
+
+    .desk-sheet::after {
+      content: "";
+      position: absolute;
+      right: 44px;
+      top: 44px;
+      width: 120px;
+      height: 80px;
+      border: 1px solid #cfd9d5;
+      background:
+        linear-gradient(#e7efec 0 0) 14px 16px / 80px 8px no-repeat,
+        linear-gradient(#e7efec 0 0) 14px 34px / 96px 8px no-repeat,
+        linear-gradient(#e7efec 0 0) 14px 52px / 62px 8px no-repeat,
+        #fff;
+    }
+
+    .report-card {
+      left: 0;
+      top: 54px;
+      width: 310px;
+      min-height: 248px;
+      padding: 24px;
+      border-radius: 5px;
+      transform: rotate(-1.5deg);
+    }
+
+    .report-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .report-head h2 {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .score {
+      display: grid;
+      place-items: center;
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      border: 6px solid #9fd6c9;
+      color: var(--deep);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .grade {
+      margin-bottom: 16px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 62px;
+      line-height: .86;
+    }
+
+    .report-lines {
+      display: grid;
+      gap: 10px;
+    }
+
+    .line {
+      display: grid;
+      grid-template-columns: 1fr 42px;
+      gap: 12px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .line i {
+      display: block;
+      height: 7px;
+      border-radius: 99px;
+      background: #dfe8e4;
+    }
+
+    .line:nth-child(1) i { background: linear-gradient(90deg, var(--teal) 78%, #dfe8e4 78%); }
+    .line:nth-child(2) i { background: linear-gradient(90deg, var(--teal) 64%, #dfe8e4 64%); }
+    .line:nth-child(3) i { background: linear-gradient(90deg, var(--teal) 86%, #dfe8e4 86%); }
+
+    .code-card {
+      left: 18px;
+      top: 350px;
+      width: 352px;
+      padding: 20px;
+      border-radius: 4px;
+      background: #081513;
+      color: #d4f6ef;
+      box-shadow: 0 26px 70px rgba(7,21,19,.28);
+    }
+
+    .code-card pre {
+      margin: 0;
+      color: #c9f4ec;
+      font-family: "Cascadia Code", Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .flow-card {
+      right: 0;
+      top: 248px;
+      width: 310px;
+      padding: 22px;
+      border-radius: 5px;
+    }
+
+    .flow-card h3,
+    .memo-card h3,
+    .diagnosis-card h3 {
+      margin: 0 0 16px;
+      font-size: 14px;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .flow-node {
+      display: grid;
+      place-items: center;
+      min-height: 42px;
+      border: 1px solid #bcd3ce;
+      border-radius: 4px;
+      color: var(--deep);
+      font-size: 12px;
+      font-weight: 800;
+      background: #f8fbfa;
+    }
+
+    .memo-card {
+      right: 34px;
+      bottom: 0;
+      width: 300px;
+      padding: 22px;
+      border-radius: 5px;
+      transform: rotate(-1deg);
+    }
+
+    .memo-card ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .memo-card li::before {
+      content: "✓";
+      margin-right: 8px;
+      color: var(--teal);
+      font-weight: 900;
+    }
+
+    .diagnosis-card {
+      left: 285px;
+      bottom: 84px;
+      width: 258px;
+      padding: 22px;
+      border-radius: 5px;
+      background: #fffdf8;
+      transform: rotate(1deg);
+    }
+
+    .diagnosis-card .stamp {
+      display: inline-flex;
+      margin-bottom: 16px;
+      padding: 7px 10px;
+      border: 1px solid #cdd9d5;
+      border-radius: 99px;
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .section {
+      padding: 88px 0;
+      border-top: 1px solid rgba(7,60,57,.12);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: .75fr 1fr;
+      gap: 84px;
+      align-items: end;
+      margin-bottom: 50px;
+    }
+
+    .kicker {
+      margin-bottom: 18px;
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", "Noto Serif JP", serif;
+      font-size: clamp(30px, 3.5vw, 44px);
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .service-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      background: rgba(255,255,255,.72);
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    .service {
+      min-height: 210px;
+      padding: 28px 24px;
+      border-right: 1px solid var(--line);
+    }
+
+    .service:last-child { border-right: 0; }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 24px;
+      border: 1px solid #b9d1cb;
+      border-radius: 50%;
+      color: var(--teal);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .service h3 {
+      margin: 0 0 14px;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .service p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .first-offer {
+      background:
+        linear-gradient(120deg, rgba(15,118,110,.16), transparent 40%),
+        linear-gradient(180deg, var(--deep) 0%, #003f3c 100%);
+      color: #fff;
+      padding: 88px 0;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 76px;
+      align-items: center;
+    }
+
+    .offer-grid h2 {
+      color: #fff;
+    }
+
+    .offer-grid p {
+      margin-top: 24px;
+      color: #cfe6e1;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .offer-actions {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 32px 0;
+    }
+
+    .offer-action {
+      padding: 14px 16px;
+      border: 1px solid var(--line-dark);
+      border-radius: 4px;
+      color: #e8f7f4;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .report-stack {
+      position: relative;
+      min-height: 380px;
+    }
+
+    .deliverable-board {
+      position: relative;
+      min-height: 420px;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 6px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03)),
+        rgba(255,255,255,.06);
+      box-shadow: 0 28px 80px rgba(0,0,0,.24);
+      backdrop-filter: blur(12px);
+    }
+
+    .deliverable-board::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .deliverable-head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 28px;
+      color: #fff;
+    }
+
+    .deliverable-head h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .deliverable-head span {
+      display: inline-flex;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.22);
+      color: #a9f0e4;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .deliverable-layout {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 20px;
+    }
+
+    .deliverable-card {
+      padding: 24px;
+      border: 1px solid rgba(7,60,57,.12);
+      border-radius: 5px;
+      background: #fffdf8;
+      color: var(--ink);
+      box-shadow: 0 18px 50px rgba(0,0,0,.16);
+    }
+
+    .deliverable-card.dark {
+      background: #071715;
+      color: #eaf8f5;
+    }
+
+    .deliverable-card h4 {
+      margin: 0 0 18px;
+      font-size: 14px;
+    }
+
+    .deliverable-row {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      padding: 14px 0;
+      border-top: 1px solid #dfe7e3;
+    }
+
+    .deliverable-row:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .deliverable-row b {
+      color: var(--teal);
+      font-size: 15px;
+    }
+
+    .deliverable-row strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .deliverable-row p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .deliverable-card.dark .deliverable-row {
+      border-color: rgba(255,255,255,.12);
+    }
+
+    .deliverable-card.dark .deliverable-row p {
+      color: #cde8e3;
+    }
+
+    .deliverable-meter {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .meter {
+      display: grid;
+      grid-template-columns: 92px 1fr 34px;
+      gap: 10px;
+      align-items: center;
+      color: #cde8e3;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .meter i {
+      height: 6px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #a9f0e4 var(--value), rgba(255,255,255,.14) var(--value));
+    }
+
+    .report-page {
+      position: absolute;
+      top: 34px;
+      width: 280px;
+      min-height: 318px;
+      padding: 34px;
+      border: 1px solid rgba(7,60,57,.14);
+      background: #fffdf8;
+      color: var(--ink);
+      box-shadow: 0 30px 80px rgba(0,0,0,.22);
+    }
+
+    .report-page.left { left: 0; transform: rotate(-1.5deg); }
+    .report-page.center { left: 215px; top: 0; z-index: 2; min-height: 380px; display: grid; place-items: center; text-align: center; }
+    .report-page.right { right: 0; transform: rotate(1deg); }
+
+    .report-page h3 {
+      margin: 0 0 24px;
+      font-size: 14px;
+    }
+
+    .report-page ol {
+      display: grid;
+      gap: 18px;
+      margin: 0;
+      padding-left: 22px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .report-cover {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      line-height: 1.55;
+    }
+
+    .report-cover span {
+      display: block;
+      margin-top: 24px;
+      color: var(--teal);
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .process {
+      display: grid;
+      gap: 16px;
+    }
+
+    .process-visual {
+      min-height: 190px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: #fff;
+      box-shadow: var(--soft-shadow);
+      overflow: hidden;
+    }
+
+    .visual-notes {
+      background:
+        radial-gradient(circle at 28% 36%, #0f766e 0 12px, transparent 13px),
+        radial-gradient(circle at 58% 58%, #9b7b3d 0 10px, transparent 11px),
+        radial-gradient(circle at 76% 30%, #10201d 0 9px, transparent 10px),
+        linear-gradient(135deg, #f5efe1, #fffdf8);
+    }
+
+    .visual-wire {
+      background:
+        linear-gradient(#dfe6e3 0 0) 28px 30px / 170px 9px no-repeat,
+        linear-gradient(#dfe6e3 0 0) 28px 56px / 120px 9px no-repeat,
+        linear-gradient(90deg, transparent 28px, #cbd8d4 29px 30px, transparent 31px) 0 0 / 54px 54px,
+        #fffdf8;
+    }
+
+    .visual-code {
+      padding: 24px;
+      background: #081513;
+      color: #d4f6ef;
+      font-family: "Cascadia Code", Consolas, monospace;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .visual-chart {
+      background:
+        linear-gradient(#d7e1dd 0 0) 28px 132px / 170px 1px no-repeat,
+        linear-gradient(180deg, transparent 56%, rgba(15,118,110,.18) 56%),
+        linear-gradient(90deg, rgba(15,118,110,.8) 0 18%, transparent 18% 24%, rgba(15,118,110,.55) 24% 42%, transparent 42% 50%, rgba(15,118,110,.7) 50% 82%, transparent 82%),
+        #fff;
+      background-size: auto, auto, 220px 110px, auto;
+      background-position: 0 0, 0 0, 30px 58px, 0 0;
+      background-repeat: no-repeat;
+    }
+
+    .process-num {
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .process h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .process p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .proof-band {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      margin-top: 52px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.68);
+    }
+
+    .proof-panel {
+      padding: 34px;
+      border-right: 1px solid var(--line);
+    }
+
+    .proof-panel:last-child { border-right: 0; }
+
+    .proof-panel h3 {
+      margin: 0 0 18px;
+      font-size: 16px;
+    }
+
+    .asset-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .asset {
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .asset b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--teal);
+      font-size: 18px;
+    }
+
+    .asset span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .quote {
+      color: #39433f;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .pricing {
+      background: #fffdf8;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .price-card {
+      min-height: 268px;
+      padding: 28px 24px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 14px 40px rgba(7,42,38,.055);
+    }
+
+    .price-card.featured {
+      background: var(--deep);
+      color: #fff;
+      transform: translateY(-14px);
+      box-shadow: 0 28px 70px rgba(7,60,57,.25);
+    }
+
+    .price-card h3 {
+      margin: 0 0 20px;
+      font-size: 17px;
+    }
+
+    .price {
+      margin-bottom: 18px;
+      color: var(--teal);
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .featured .price { color: #a9f0e4; }
+
+    .price-card p,
+    .price-card li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .featured p,
+    .featured li { color: #d2ece7; }
+
+    .price-card ul {
+      display: grid;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding-left: 18px;
+    }
+
+    .about-contact {
+      display: grid;
+      grid-template-columns: 1.03fr .97fr;
+      min-height: 560px;
+    }
+
+    .about-block {
+      padding: 74px max(48px, calc((100vw - var(--max)) / 2 + 48px));
+      background:
+        linear-gradient(120deg, rgba(15,118,110,.24), transparent 48%),
+        var(--deep);
+      color: #fff;
+    }
+
+    .about-block h2 {
+      margin: 0;
+      max-width: 520px;
+      font-family: Georgia, "Times New Roman", "Noto Serif JP", serif;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.25;
+    }
+
+    .about-block p {
+      margin-top: 26px;
+      max-width: 520px;
+      color: #d2ece7;
+      font-size: 15px;
+      line-height: 1.95;
+    }
+
+    .signature {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 22px;
+      align-items: center;
+      margin-top: 42px;
+    }
+
+    .portrait {
+      width: 118px;
+      height: 150px;
+      border: 1px solid var(--line-dark);
+      background:
+        radial-gradient(circle at 50% 28%, #d9e2df 0 28px, transparent 29px),
+        linear-gradient(150deg, rgba(255,255,255,.28), rgba(255,255,255,.04)),
+        rgba(255,255,255,.08);
+    }
+
+    .signature b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .signature span {
+      color: #c6e5df;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .contact-block {
+      padding: 74px max(48px, calc((100vw - var(--max)) / 2 + 48px)) 74px 48px;
+      background: #fff;
+    }
+
+    .contact-block h2 {
+      margin: 0 0 30px;
+      font-size: 28px;
+      line-height: 1.45;
+    }
+
+    .form {
+      display: grid;
+      gap: 13px;
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .field {
+      min-height: 48px;
+      padding: 14px 15px;
+      border: 1px solid #dce4e0;
+      border-radius: 4px;
+      background: #fff;
+      color: #77807d;
+      font-size: 13px;
+    }
+
+    .field.large { min-height: 124px; }
+
+    .submit {
+      display: grid;
+      place-items: center;
+      min-height: 54px;
+      margin-top: 8px;
+      border-radius: 4px;
+      background: var(--deep);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .fine {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .footer {
+      background: #071715;
+      color: #fff;
+      padding: 34px 0;
+    }
+
+    .footer .shell {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: #c9dbd7;
+      font-size: 12px;
+    }
+
+    .footer b {
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+    }
+
+    @media (max-width: 980px) {
+      .nav { display: none; }
+      .hero,
+      .section-head,
+      .offer-grid,
+      .proof-band,
+      .about-contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 40px;
+      }
+
+      .studio-board { min-height: auto; }
+      .art-float { right: 18px; top: 18px; }
+
+      .service-strip,
+      .process-grid,
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .service {
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .service:nth-child(2n) { border-right: 0; }
+      .service:last-child { border-bottom: 0; }
+
+      .about-block,
+      .contact-block {
+        padding: 58px 28px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 28px, var(--max)); }
+      .brand small { display: none; }
+      .topbar { padding: 22px 0; }
+      .hero { gap: 34px; padding-bottom: 64px; }
+      h1 { font-size: 72px; }
+      .tagline { font-size: 28px; }
+      .lead { font-size: 15px; }
+      .actions,
+      .mini-proof,
+      .offer-actions,
+      .asset-list,
+      .two {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+      .button { width: 100%; }
+      .studio-board { min-height: auto; transform: none; width: 100%; }
+      .hero-art img { width: 100%; }
+      .art-caption {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 12px;
+        background: var(--deep);
+      }
+      .art-float {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 100%;
+        margin-top: 12px;
+      }
+      .section { padding: 62px 0; }
+      .service-strip,
+      .process-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      .service { border-right: 0; border-bottom: 1px solid var(--line); }
+      .service:last-child { border-bottom: 0; }
+      .report-page.left,
+      .report-page.center,
+      .report-page.right {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        width: 100%;
+        min-height: auto;
+        margin-bottom: 16px;
+        transform: none;
+      }
+      .report-stack { min-height: auto; }
+      .deliverable-layout { grid-template-columns: 1fr; }
+      .price-card.featured { transform: none; }
+      .footer .shell { display: grid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="#"><span class="logo-mark">LW</span><small>AI implementation partner</small></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#services">サービス</a>
+      <a href="#offer">初回相談メニュー</a>
+      <a href="#process">実績・プロセス</a>
+      <a href="#pricing">料金の目安</a>
+      <a href="#about">私たちについて</a>
+      <a class="nav-cta" href="#contact">ご相談・お問い合わせ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shell hero">
+      <div class="hero-copy">
+        <h1>Lug Works</h1>
+        <div class="tagline">考えていることを、AIで使える形に。</div>
+        <p class="lead">AIの力を、あなたの事業に。業務の仕組み化から、Web制作、AI導入支援まで。伴走し、実装し、成果につなげます。</p>
+        <div class="actions">
+          <a class="button" href="#contact">まずは無料で相談する <span class="arrow">→</span></a>
+          <a class="button secondary" href="#services">サービスを見る <span class="arrow">→</span></a>
+        </div>
+        <div class="mini-proof">
+          <div><b>AI</b><span>相談・整理から実装まで一貫して支援</span></div>
+          <div><b>Web</b><span>受け皿になるサイトと導線を設計</span></div>
+          <div><b>Ops</b><span>作って終わりでなく運用改善へ接続</span></div>
+        </div>
+      </div>
+
+      <div class="studio-board" aria-label="Lug Works work artifacts">
+        <figure class="hero-art">
+          <img src="assets/hero-implementation-collage.png" alt="Webサイト診断レポート、AI活用設計レポート、導線マップ、改善提案メモを重ねたLug Worksの制作プロセス">
+          <figcaption class="art-caption">
+            <b>A-</b>
+            <span>Web診断、AI活用設計、導線マップまで。考えていることを、見える成果物へ落とし込みます。</span>
+          </figcaption>
+          <div class="art-float">
+            <strong>82/100</strong>
+            <span>初回診断では、課題と改善余地を見える化します。</span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Service</div>
+            <h2>AIで、事業の「やりたい」を前に進める。</h2>
+          </div>
+          <p>戦略設計から実装・運用まで、AI活用を一気通貫でサポートします。Web制作や業務改善、導入支援まで、必要なところに最適な支援を。</p>
+        </div>
+        <div class="service-strip">
+          <article class="service">
+            <div class="icon">01</div>
+            <h3>AI戦略・業務設計</h3>
+            <p>課題を整理し、AIで解決するための戦略と仕組みを設計。</p>
+          </article>
+          <article class="service">
+            <div class="icon">02</div>
+            <h3>AI導入・実装支援</h3>
+            <p>業務にフィットするAIを選定・導入し、現場で使える形に。</p>
+          </article>
+          <article class="service">
+            <div class="icon">03</div>
+            <h3>業務改善・自動化</h3>
+            <p>繰り返し作業を自動化し、生産性と精度を高めます。</p>
+          </article>
+          <article class="service">
+            <div class="icon">04</div>
+            <h3>Web制作・改善</h3>
+            <p>成果につながるWebサイトを、設計から実装まで一貫対応。</p>
+          </article>
+          <article class="service">
+            <div class="icon">05</div>
+            <h3>伴走・運用サポート</h3>
+            <p>導入後の定着・改善まで、長期で伴走します。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="offer" class="first-offer">
+      <div class="shell offer-grid">
+        <div>
+          <div class="kicker">First offer</div>
+          <h2>まずは、AIでできることを一緒に見つけましょう。</h2>
+          <p>初回はヒアリングと簡易診断をもとに、AIで実現できることと、最初に進めるべき施策をご提案します。</p>
+          <div class="offer-actions">
+            <div class="offer-action">ヒアリング（60分）</div>
+            <div class="offer-action">現状課題の整理</div>
+            <div class="offer-action">AI活用アイデアの提案</div>
+            <div class="offer-action">簡易診断レポート</div>
+          </div>
+          <a class="button" href="#contact" style="background:#fff;color:var(--deep);border-color:#fff;box-shadow:none;">初回相談に申し込む <span class="arrow">→</span></a>
+        </div>
+        <div class="deliverable-board">
+          <div class="deliverable-head">
+            <h3>初回相談で整理すること</h3>
+            <span>Sample output</span>
+          </div>
+          <div class="deliverable-layout">
+            <article class="deliverable-card">
+              <h4>課題から施策へ落とす</h4>
+              <div class="deliverable-row">
+                <b>01</b>
+                <div>
+                  <strong>現状の詰まりを整理</strong>
+                  <p>Web、業務、AI活用のどこに改善余地があるかを分けます。</p>
+                </div>
+              </div>
+              <div class="deliverable-row">
+                <b>02</b>
+                <div>
+                  <strong>最初に作る成果物を決める</strong>
+                  <p>診断レポート、Web改善、業務テンプレートなど実装単位へ変換します。</p>
+                </div>
+              </div>
+              <div class="deliverable-row">
+                <b>03</b>
+                <div>
+                  <strong>次の一手を提案</strong>
+                  <p>費用感と進め方を含めて、無理のない開始地点を決めます。</p>
+                </div>
+              </div>
+            </article>
+            <article class="deliverable-card dark">
+              <h4>簡易スコア例</h4>
+              <div class="deliverable-meter">
+                <div class="meter" style="--value: 76%;"><span>導線</span><i></i><b>76</b></div>
+                <div class="meter" style="--value: 68%;"><span>訴求</span><i></i><b>68</b></div>
+                <div class="meter" style="--value: 84%;"><span>更新性</span><i></i><b>84</b></div>
+                <div class="meter" style="--value: 72%;"><span>AI化余地</span><i></i><b>72</b></div>
+              </div>
+              <div class="deliverable-row" style="margin-top: 22px;">
+                <b>→</b>
+                <div>
+                  <strong>提案に変換</strong>
+                  <p>見た目の評価だけで終わらせず、実装できる改善案に落とし込みます。</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Works / Process</div>
+            <h2>考え方から実装まで、プロセスを大切にします。</h2>
+          </div>
+          <p>課題の整理から設計、実装、運用まで。透明性のあるプロセスで、確実に成果へつなげます。</p>
+        </div>
+        <div class="process-grid">
+          <article class="process">
+            <div class="process-num">01　課題の整理</div>
+            <div class="process-visual visual-notes"></div>
+            <h3>本質的な課題を把握</h3>
+            <p>ヒアリングと現状分析で、最初に取り組むべき課題を整理します。</p>
+          </article>
+          <article class="process">
+            <div class="process-num">02　設計・計画</div>
+            <div class="process-visual visual-wire"></div>
+            <h3>AI活用の方向性を設計</h3>
+            <p>実現するための設計を行い、必要な成果物へ落とし込みます。</p>
+          </article>
+          <article class="process">
+            <div class="process-num">03　実装・構築</div>
+            <div class="process-visual visual-code">const site = build({<br>  offer: "clear",<br>  proof: "visible",<br>  flow: "simple"<br>})</div>
+            <h3>プロトタイプから実装</h3>
+            <p>短いサイクルで形にして、確認しながら磨き込みます。</p>
+          </article>
+          <article class="process">
+            <div class="process-num">04　運用・改善</div>
+            <div class="process-visual visual-chart"></div>
+            <h3>成果を見ながら改善</h3>
+            <p>公開後も継続的に改善し、成果の最大化を目指します。</p>
+          </article>
+        </div>
+
+        <div class="proof-band">
+          <div class="proof-panel">
+            <h3>主な支援実績として見せていく資産</h3>
+            <div class="asset-list">
+              <div class="asset"><b>01</b><span>Lug Worksサイト制作過程</span></div>
+              <div class="asset"><b>02</b><span>N1セミナー実演</span></div>
+              <div class="asset"><b>03</b><span>自社事業でのAI活用</span></div>
+            </div>
+          </div>
+          <div class="proof-panel">
+            <h3>Proofの考え方</h3>
+            <p class="quote">大きく見せすぎず、制作過程・実演・自社活用を透明に見せることで、相談前の不安を減らします。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section pricing">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Price</div>
+            <h2>ご相談メニュー（目安）</h2>
+          </div>
+          <p>状況やご要望に応じて最適なプランをご提案します。まずは初回相談で、方向性とお見積りをお出しします。</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h3>初回相談・診断</h3>
+            <div class="price">¥0</div>
+            <p>60分。現状を聞き、AIやWebで改善できることを整理します。</p>
+            <ul><li>ヒアリング</li><li>課題整理</li><li>簡易提案</li></ul>
+          </article>
+          <article class="price-card">
+            <h3>スポット相談</h3>
+            <div class="price">¥50,000〜</div>
+            <p>WebやAI活用の個別テーマを短期で整理します。</p>
+            <ul><li>改善提案</li><li>実行プラン</li><li>資料整理</li></ul>
+          </article>
+          <article class="price-card featured">
+            <h3>プロジェクト支援</h3>
+            <div class="price">¥300,000〜</div>
+            <p>Web制作、AI導入、業務改善を設計から実装まで進めます。</p>
+            <ul><li>要件定義</li><li>AI導入・実装</li><li>テスト・運用サポート</li></ul>
+          </article>
+          <article class="price-card">
+            <h3>継続伴走プラン</h3>
+            <div class="price">¥100,000〜/月</div>
+            <p>運用後の改善や、新しいAI活用の定着を支援します。</p>
+            <ul><li>月次相談</li><li>改善提案</li><li>運用サポート</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-contact">
+      <div class="about-block">
+        <div class="kicker">About</div>
+        <h2>一番のルーアークスとして、本質的な伴走を。</h2>
+        <p>私は、AIとWebの力で、事業の可能性を広げるパートナーでありたいと考えています。「考えていること」を「使える形」に変え、成果につながるまで、伴走します。</p>
+        <div class="signature">
+          <div class="portrait" aria-hidden="true"></div>
+          <div>
+            <b>Hikaru</b>
+            <span>Lug Works代表<br>AIコンサルタント / Webディレクター</span>
+          </div>
+        </div>
+      </div>
+      <div id="contact" class="contact-block">
+        <div class="kicker">Contact</div>
+        <h2>まずはお気軽にご相談ください。</h2>
+        <form class="form">
+          <div class="two">
+            <div class="field">お名前</div>
+            <div class="field">会社名（任意）</div>
+          </div>
+          <div class="field">メールアドレス</div>
+          <div class="field large">ご相談内容</div>
+          <div class="submit">送信する</div>
+        </form>
+        <p class="fine">お急ぎでない内容は、返信までに数日いただく場合があります。正式な公開時にフォーム送信先を設定します。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <b>Lug Works</b>
+      <span>AIコンサルティング & 実装パートナー</span>
+      <span>© Lug Works All rights reserved.</span>
+    </div>
+  </footer>
+</body>
+</html>
