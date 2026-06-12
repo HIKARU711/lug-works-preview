@@ -14,6 +14,13 @@ Lug Worksコーポレートサイトの実装版 v0。
 
 - `index.html`
 - `assets/hero-implementation-collage.png`
+- `robots.txt`
+- `_headers`
+
+## 内部メモ
+
+- `CONTACT_SETUP.md`
+- 問い合わせフォームUIは実装済み。ただし正式な送信先/メールアドレスが決まるまで送信ボタンは無効化する。
 
 ## 次にやること
 

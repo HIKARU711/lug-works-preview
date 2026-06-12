@@ -1116,27 +1116,96 @@
     }
 
     .field {
-      min-height: 48px;
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      color: #2c3734;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .field span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 50px;
       padding: 14px 15px;
       border: 1px solid #dce4e0;
       border-radius: 4px;
       background: #fff;
-      color: #77807d;
-      font-size: 13px;
+      color: #1d2825;
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .18s ease, box-shadow .18s ease;
     }
 
-    .field.large { min-height: 124px; }
+    .field textarea {
+      min-height: 136px;
+      resize: vertical;
+      line-height: 1.7;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(15,118,110,.12);
+    }
+
+    .contact-options {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 2px 0 4px;
+    }
+
+    .contact-option {
+      padding: 12px 13px;
+      border: 1px solid #dce4e0;
+      border-radius: 4px;
+      background: #fbfaf5;
+      color: #2c3734;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
 
     .submit {
-      display: grid;
+      display: inline-grid;
       place-items: center;
       min-height: 54px;
       margin-top: 8px;
+      border: 0;
       border-radius: 4px;
       background: var(--deep);
       color: #fff;
       font-size: 14px;
       font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .submit:disabled {
+      background: #6d7c77;
+      cursor: not-allowed;
+      opacity: .82;
+    }
+
+    .form-status {
+      min-height: 24px;
+      color: var(--deep);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.7;
     }
 
     .fine {
@@ -1261,6 +1330,7 @@
       .report-stack { min-height: auto; }
       .deliverable-layout { grid-template-columns: 1fr; }
       .price-card.featured { transform: none; }
+      .contact-options { grid-template-columns: 1fr; }
       .footer .shell { display: grid; }
     }
   </style>
@@ -1520,17 +1590,49 @@
       </div>
       <div id="contact" class="contact-block">
         <div class="kicker">Contact</div>
-        <h2>まずはお気軽にご相談ください。</h2>
-        <form class="form">
-          <div class="two">
-            <div class="field">お名前</div>
-            <div class="field">会社名（任意）</div>
+        <h2>まずは、今考えていることを聞かせてください。</h2>
+        <form class="form" id="contactForm" action="" method="post" novalidate data-status="pending-endpoint">
+          <div class="contact-options" aria-label="相談できる内容">
+            <div class="contact-option">Webサイト改善</div>
+            <div class="contact-option">AI導入・業務改善</div>
+            <div class="contact-option">セミナー・講師相談</div>
           </div>
-          <div class="field">メールアドレス</div>
-          <div class="field large">ご相談内容</div>
-          <div class="submit">送信する</div>
+          <div class="two">
+            <div class="field">
+              <label for="name">お名前</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="山田 太郎" required>
+            </div>
+            <div class="field">
+              <label for="company">会社名 / 屋号 <span>任意</span></label>
+              <input id="company" name="company" type="text" autocomplete="organization" placeholder="株式会社〇〇">
+            </div>
+          </div>
+          <div class="field">
+            <label for="email">メールアドレス</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="topic">相談したいこと</label>
+            <select id="topic" name="topic" required>
+              <option value="">選択してください</option>
+              <option value="Webサイト改善">Webサイト改善</option>
+              <option value="AI導入・業務改善">AI導入・業務改善</option>
+              <option value="セミナー・講師">セミナー・講師</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="url">参考URL <span>任意</span></label>
+            <input id="url" name="url" type="url" inputmode="url" placeholder="https://example.com">
+          </div>
+          <div class="field">
+            <label for="message">ご相談内容</label>
+            <textarea id="message" name="message" placeholder="今困っていること、作りたいもの、相談したい背景などを簡単に教えてください。" required></textarea>
+          </div>
+          <button class="submit" type="submit" disabled>送信先を設定中</button>
+          <p class="form-status" role="status" aria-live="polite">正式公開前のため、現在は送信先を未設定にしています。</p>
         </form>
-        <p class="fine">お急ぎでない内容は、返信までに数日いただく場合があります。正式な公開時にフォーム送信先を設定します。</p>
+        <p class="fine">公開時は、フォーム送信先とメールアドレスを設定します。お急ぎでない内容は、返信までに数日いただく場合があります。</p>
       </div>
     </section>
   </main>
