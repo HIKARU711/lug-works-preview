@@ -1,0 +1,17 @@
+{
+  "name": "Lug Works",
+  "short_name": "Lug Works",
+  "description": "考えていることを、AIで使える形に。",
+  "start_url": "https://hikaru711.github.io/lug-works-preview/",
+  "display": "standalone",
+  "background_color": "#f7f7f2",
+  "theme_color": "#073c39",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

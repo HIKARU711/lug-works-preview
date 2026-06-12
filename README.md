@@ -16,11 +16,14 @@ Lug Worksコーポレートサイトの実装版 v0。
 - `assets/hero-implementation-collage.png`
 - `robots.txt`
 - `_headers`
+- `favicon.svg`
+- `site.webmanifest`
 
 ## 内部メモ
 
 - `CONTACT_SETUP.md`
 - 問い合わせフォームUIは実装済み。ただし正式な送信先/メールアドレスが決まるまで送信ボタンは無効化する。
+- 現在の `canonical` / `og:url` / `og:image` / `twitter:image` / `site.webmanifest` は一時共有URL `https://hikaru711.github.io/lug-works-preview/` 向け。正式ドメイン公開時に差し替える。
 
 ## 次にやること
 
