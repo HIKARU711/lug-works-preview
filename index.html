@@ -8,8 +8,10 @@
   <meta property="og:title" content="Lug Works | 考えていることを、AIで使える形に。">
   <meta property="og:description" content="AIコンサルティングと実装支援のパートナー。Web制作、業務改善、AI導入、セミナーまで、事業に必要な次の一手を一緒に形にします。">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Lug Works">
   <meta property="og:image" content="assets/hero-implementation-collage.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#073c39">
   <style>
     :root {
       --paper: #f7f7f2;
@@ -57,6 +59,34 @@
 
     a { color: inherit; text-decoration: none; }
     p { margin: 0; }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 20;
+      padding: 10px 14px;
+      border-radius: 4px;
+      background: var(--deep);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      transform: translateY(-150%);
+      transition: transform .18s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid rgba(15,118,110,.34);
+      outline-offset: 3px;
+    }
 
     .shell {
       width: min(var(--max), calc(100vw - 48px));
@@ -1336,6 +1366,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">本文へ移動</a>
   <header class="shell topbar">
     <a class="brand" href="#"><span class="logo-mark">LW</span><small>AI implementation partner</small></a>
     <nav class="nav" aria-label="Primary">
@@ -1348,12 +1379,12 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <section class="shell hero">
       <div class="hero-copy">
         <h1>Lug Works</h1>
         <div class="tagline">考えていることを、AIで使える形に。</div>
-        <p class="lead">AIの力を、あなたの事業に。業務の仕組み化から、Web制作、AI導入支援まで。伴走し、実装し、成果につなげます。</p>
+        <p class="lead">Lug Worksは、AIコンサルティングと実装支援のパートナーです。Web制作、業務改善、AI導入、セミナーまで、事業に必要な次の一手を一緒に形にします。</p>
         <div class="actions">
           <a class="button" href="#contact">まずは無料で相談する <span class="arrow">→</span></a>
           <a class="button secondary" href="#services">サービスを見る <span class="arrow">→</span></a>
@@ -1578,8 +1609,8 @@
     <section id="about" class="about-contact">
       <div class="about-block">
         <div class="kicker">About</div>
-        <h2>一番のルーアークスとして、本質的な伴走を。</h2>
-        <p>私は、AIとWebの力で、事業の可能性を広げるパートナーでありたいと考えています。「考えていること」を「使える形」に変え、成果につながるまで、伴走します。</p>
+        <h2>Lug Worksとして、本質的な伴走を。</h2>
+        <p>Lug Worksは、Hikaruが運営するAIコンサルティングと実装支援の屋号です。考えていることを整理し、実際に使えるページ、仕組み、導線、テンプレートへ落とし込むことを大切にしています。</p>
         <div class="signature">
           <div class="portrait" aria-hidden="true"></div>
           <div>
@@ -1591,7 +1622,7 @@
       <div id="contact" class="contact-block">
         <div class="kicker">Contact</div>
         <h2>まずは、今考えていることを聞かせてください。</h2>
-        <form class="form" id="contactForm" action="" method="post" novalidate data-status="pending-endpoint">
+        <form class="form" id="contactForm" action="" method="post" novalidate data-status="pending-endpoint" aria-describedby="contactStatus">
           <div class="contact-options" aria-label="相談できる内容">
             <div class="contact-option">Webサイト改善</div>
             <div class="contact-option">AI導入・業務改善</div>
@@ -1629,8 +1660,8 @@
             <label for="message">ご相談内容</label>
             <textarea id="message" name="message" placeholder="今困っていること、作りたいもの、相談したい背景などを簡単に教えてください。" required></textarea>
           </div>
-          <button class="submit" type="submit" disabled>送信先を設定中</button>
-          <p class="form-status" role="status" aria-live="polite">正式公開前のため、現在は送信先を未設定にしています。</p>
+          <button class="submit" type="submit" disabled aria-describedby="contactStatus">送信先を設定中</button>
+          <p class="form-status" id="contactStatus" role="status" aria-live="polite">正式公開前のため、現在は送信先を未設定にしています。</p>
         </form>
         <p class="fine">公開時は、フォーム送信先とメールアドレスを設定します。お急ぎでない内容は、返信までに数日いただく場合があります。</p>
       </div>
