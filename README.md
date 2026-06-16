@@ -23,7 +23,7 @@ Lug Worksコーポレートサイトの実装版 v0。
 
 - `CONTACT_SETUP.md`
 - 問い合わせフォームUIは実装済み。ただし正式な送信先/メールアドレスが決まるまで送信ボタンは無効化する。
-- 現在の `canonical` / `og:url` / `og:image` / `twitter:image` / `site.webmanifest` は一時共有URL `https://hikaru711.github.io/lug-works-preview/` 向け。正式ドメイン公開時に差し替える。
+- 現在の `canonical` / `og:url` / `og:image` / `twitter:image` / `site.webmanifest` は一時共有URL `https://ruai-dev.github.io/lug-works-preview/` 向け。正式ドメイン公開時に差し替える。
 
 ## 次にやること
 
