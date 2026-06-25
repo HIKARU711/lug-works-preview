@@ -90,21 +90,6 @@
   section{scroll-margin-top:84px}
   .band{padding-block:var(--sec-y)}
   .band+.band{border-top:1px solid var(--line)}
-  /* light sections — 明暗の交互で読みやすさ＋リズム（暗の見せ場を挟む） */
-  .band.light{
-    background:#f5f3ec;color:#16140e;
-    --bone:#16140e; --ash:#55514a; --smoke:#6e695f; --line:#e4e1d7; --line2:#d6d2c6;
-    --surface:#ffffff; --surface2:#faf9f3; --bg:#f5f3ec; --bg2:#eeebe1;
-    --teal:#0b7d70; --teal-bright:#0a6a5f;
-  }
-  /* Proof の黒カードはライト節でも"暗いまま"＝アクセントとして映えさせる */
-  .band.light .proof-note{background:linear-gradient(155deg,#141b18,#172019);border-color:#0c5f57;color:#eef2ef;box-shadow:0 2px 6px rgba(20,20,15,.12),0 24px 60px rgba(20,20,15,.16)}
-  .band.light .proof-note .self{color:#54e6d2}
-  .band.light .proof-note h3{color:#eef2ef}
-  .band.light .proof-note p{color:#a3aca6}
-  /* Process: ライトでは teal グローを抑える */
-  .band.light .steps .fill{box-shadow:none}
-  .band.light .step.lit .node{color:#fff;box-shadow:0 4px 12px rgba(11,125,112,.22)}
 
   /* What We Do */
   .wwd{display:grid;gap:0}
@@ -268,7 +253,7 @@
   </section>
 
   <!-- 01 WHAT WE DO -->
-  <section class="band wrap light" id="services" aria-labelledby="services-title">
+  <section class="band wrap" id="services" aria-labelledby="services-title">
     <div class="section-head" data-reveal>
       <p class="eyebrow"><span class="num">01</span><span class="tk"></span> What We Do</p>
       <h2 id="services-title">AIを、事業で使える形にする。</h2>
@@ -283,7 +268,7 @@
   </section>
 
   <!-- 02 FIRST OFFER -->
-  <section class="band wrap light" id="offer" aria-labelledby="offer-title">
+  <section class="band wrap" id="offer" aria-labelledby="offer-title">
     <div class="section-head" data-reveal>
       <p class="eyebrow"><span class="num">02</span><span class="tk"></span> First Offer</p>
       <h2 id="offer-title">はじめの相談は、Webサイト改善から。</h2>
@@ -298,7 +283,7 @@
   </section>
 
   <!-- 03 PROCESS -->
-  <section class="band wrap light" id="process" aria-labelledby="process-title">
+  <section class="band wrap" id="process" aria-labelledby="process-title">
     <div class="section-head" data-reveal>
       <p class="eyebrow"><span class="num">03</span><span class="tk"></span> Process</p>
       <h2 id="process-title">相談から、使える形まで。</h2>
@@ -314,7 +299,7 @@
   </section>
 
   <!-- 04 PROOF -->
-  <section class="band wrap light" id="works" aria-labelledby="works-title">
+  <section class="band wrap" id="works" aria-labelledby="works-title">
     <div class="section-head" data-reveal>
       <p class="eyebrow"><span class="num">04</span><span class="tk"></span> Proof</p>
       <h2 id="works-title">作りながら、証明していく。</h2>
@@ -337,7 +322,7 @@
   </section>
 
   <!-- 05 PRICING -->
-  <section class="band wrap light" id="pricing" aria-labelledby="pricing-title">
+  <section class="band wrap" id="pricing" aria-labelledby="pricing-title">
     <div class="section-head" data-reveal>
       <p class="eyebrow"><span class="num">05</span><span class="tk"></span> Pricing</p>
       <h2 id="pricing-title">小さく相談して、必要な分だけ形にする。</h2>
@@ -357,7 +342,7 @@
   </section>
 
   <!-- 06 ABOUT -->
-  <section class="band wrap light" id="about" aria-labelledby="about-title">
+  <section class="band wrap" id="about" aria-labelledby="about-title">
     <div class="about-grid">
       <div class="section-head" data-reveal style="margin-bottom:0">
         <p class="eyebrow"><span class="num">06</span><span class="tk"></span> About</p>
